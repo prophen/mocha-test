@@ -20,6 +20,7 @@ describe("SAMPLE unit test", function(){
       done()
     })
   })
+
   it('should add two numbers', function(done){
     // calling ADD api
     server.post('/add')
@@ -29,7 +30,17 @@ describe("SAMPLE unit test", function(){
     .end(function(err,res){
       res.status.should.equal(200)
       res.body.error.should.equal(false)
-      res.body.data.should.equal(30)
+      res.body.data.should.equal(31)
+      done()
+    })
+  })
+
+  it('should return 404', function(done){
+    server
+    .get('/random')
+    .expect(404)
+    .end(function(err,res){
+      res.status.should.equal(404)
       done()
     })
   })
